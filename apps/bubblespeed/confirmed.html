@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Account confirmed · Bubble Speed</title>
+    <link rel="icon" type="image/png" href="image.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #22f5a0;
+        }
+
+        .confirm-wrap {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            margin-bottom: 34px;
+        }
+
+        .brand img {
+            height: 42px;
+            width: auto;
+            filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.4));
+        }
+
+        .confirm-card {
+            background: var(--card-bg);
+            padding: 48px 40px;
+            border-radius: 22px;
+            border: 1px solid rgba(34, 245, 160, 0.55);
+            max-width: 520px;
+            width: 100%;
+            box-sizing: border-box;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 40px rgba(34, 245, 160, 0.12);
+        }
+
+        .confirm-card.state-error {
+            border-color: rgba(255, 196, 0, 0.55);
+            box-shadow: 0 0 40px rgba(255, 196, 0, 0.12);
+        }
+
+        /* Animated icon */
+        .icon-badge {
+            width: 108px;
+            height: 108px;
+            margin: 0 auto 28px;
+        }
+
+        .icon-badge svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ring {
+            fill: none;
+            stroke: var(--neon-green);
+            stroke-width: 4;
+            stroke-dasharray: 289;
+            stroke-dashoffset: 289;
+            animation: draw 0.7s ease-out forwards;
+            filter: drop-shadow(0 0 6px rgba(34, 245, 160, 0.7));
+        }
+
+        .tick {
+            fill: none;
+            stroke: var(--neon-green);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: draw 0.4s 0.55s ease-out forwards;
+            filter: drop-shadow(0 0 6px rgba(34, 245, 160, 0.7));
+        }
+
+        .state-error .ring {
+            stroke: #ffc400;
+            filter: drop-shadow(0 0 6px rgba(255, 196, 0, 0.7));
+        }
+
+        .state-error .tick {
+            stroke: #ffc400;
+            filter: drop-shadow(0 0 6px rgba(255, 196, 0, 0.7));
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .confirm-card h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.9rem;
+            line-height: 1.2;
+            margin: 0 0 18px;
+            color: var(--neon-green);
+            text-shadow: 0 0 12px rgba(34, 245, 160, 0.4);
+        }
+
+        .state-error h1 {
+            color: #ffc400;
+            text-shadow: 0 0 12px rgba(255, 196, 0, 0.4);
+        }
+
+        .confirm-card p {
+            font-size: 1.12rem;
+            line-height: 1.65;
+            color: #e6ecf5;
+            margin: 0 auto 10px;
+            max-width: 420px;
+        }
+
+        .close-hint {
+            font-size: 0.9rem;
+            color: #8b95a7;
+            margin-top: 24px;
+        }
+
+        footer {
+            margin-top: 40px;
+        }
+
+        /* RTL */
+        html[dir="rtl"] .brand {
+            direction: rtl;
+        }
+
+        @media (max-width: 600px) {
+            .confirm-card {
+                padding: 38px 24px;
+            }
+
+            .confirm-card h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="bgCanvas"></canvas>
+    <div class="bg-overlay"></div>
+
+    <div class="confirm-wrap">
+        <div class="brand">
+            <img src="image.png" alt="Bubble Speed">
+            <span><span class="neon-yellow">BUBBLE</span> <span class="neon-blue">SPEED</span></span>
+        </div>
+
+        <div class="confirm-card" id="card">
+            <div class="icon-badge">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle class="ring" cx="50" cy="50" r="46" />
+                    <path class="tick" id="tickPath" d="M28 51 L44 66 L73 35" />
+                </svg>
+            </div>
+            <h1 id="title">Account confirmed</h1>
+            <p id="body">Your email has been verified. Open the Bubble Speed app and sign in with your username and
+                password.</p>
+            <p class="close-hint" id="hint">You can now close this window.</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 NeoWaveCode. Bubble Speed.</p>
+        </footer>
+    </div>
+
+    <script src="background.js"></script>
+    <script>
+        // ==== Localized strings (filled for all app locales) ====
+        const translations = {
+          "en": {
+            "successTitle": "Account confirmed",
+            "successBody": "Your email has been verified. Open the Bubble Speed app and sign in with your username and password.",
+            "closeHint": "You can now close this window.",
+            "errorTitle": "Link expired",
+            "errorBody": "This confirmation link is invalid or has expired. Open the Bubble Speed app to request a new confirmation email."
+          },
+          "es": {
+            "successTitle": "Cuenta confirmada",
+            "successBody": "Tu correo ha sido verificado. Abre la aplicación de Bubble Speed e inicia sesión con tu usuario y contraseña.",
+            "closeHint": "Ya puedes cerrar esta ventana.",
+            "errorTitle": "Enlace caducado",
+            "errorBody": "Este enlace de confirmación no es válido o ha caducado. Abre la aplicación de Bubble Speed para solicitar un nuevo correo de confirmación."
+          },
+          "de": {
+            "successTitle": "Konto bestätigt",
+            "successBody": "Deine E-Mail wurde bestätigt. Öffne die Bubble Speed App und melde dich mit deinem Benutzernamen und Passwort an.",
+            "closeHint": "Du kannst dieses Fenster jetzt schließen.",
+            "errorTitle": "Link abgelaufen",
+            "errorBody": "Dieser Bestätigungslink ist ungültig oder abgelaufen. Öffne die Bubble Speed App, um eine neue Bestätigungs-E-Mail anzufordern."
+          },
+          "fr": {
+            "successTitle": "Compte confirmé",
+            "successBody": "Votre e-mail a été vérifié. Ouvrez l'application Bubble Speed et connectez-vous avec votre nom d'utilisateur et votre mot de passe.",
+            "closeHint": "Vous pouvez maintenant fermer cette fenêtre.",
+            "errorTitle": "Lien expiré",
+            "errorBody": "Ce lien de confirmation est invalide ou a expiré. Ouvrez l'application Bubble Speed pour demander un nouvel e-mail de confirmation."
+          },
+          "it": {
+            "successTitle": "Account confermato",
+            "successBody": "La tua email è stata verificata. Apri l'app Bubble Speed e accedi con il tuo utente e la tua password.",
+            "closeHint": "Ora puoi chiudere questa finestra.",
+            "errorTitle": "Link scaduto",
+            "errorBody": "Questo link di conferma non è valido o è scaduto. Apri l'app Bubble Speed per richiedere una nuova email di conferma."
+          },
+          "pt": {
+            "successTitle": "Conta confirmada",
+            "successBody": "O seu e-mail foi verificado. Abra o aplicativo Bubble Speed e entre com seu usuário e senha.",
+            "closeHint": "Você já pode fechar esta janela.",
+            "errorTitle": "Link expirado",
+            "errorBody": "Este link de confirmação é inválido ou expirou. Abra o aplicativo Bubble Speed para solicitar um novo e-mail de confirmação."
+          },
+          "nl": {
+            "successTitle": "Account bevestigd",
+            "successBody": "Je e-mail is geverifieerd. Open de Bubble Speed-app en log in met je gebruikersnaam en wachtwoord.",
+            "closeHint": "Je kunt dit venster nu sluiten.",
+            "errorTitle": "Link verlopen",
+            "errorBody": "Deze bevestigingslink is ongeldig of verlopen. Open de Bubble Speed-app om een nieuwe bevestigingsmail aan te vragen."
+          },
+          "ca": {
+            "successTitle": "Compte confirmat",
+            "successBody": "S'ha verificat el teu correu. Obre l'aplicació de Bubble Speed i inicia sessió amb el teu usuari i la teva contrasenya.",
+            "closeHint": "Ja pots tancar aquesta finestra.",
+            "errorTitle": "L'enllaç ha caducat",
+            "errorBody": "Aquest enllaç de confirmació no és vàlid o ha caducat. Obre l'aplicació de Bubble Speed per demanar un nou correu de confirmació."
+          },
+          "ru": {
+            "successTitle": "Аккаунт подтверждён",
+            "successBody": "Твоя почта подтверждена. Открой приложение Bubble Speed и войди, используя свой никнейм и пароль.",
+            "closeHint": "Теперь можешь закрыть это окно.",
+            "errorTitle": "Ссылка устарела",
+            "errorBody": "Эта ссылка подтверждения недействительна или устарела. Открой приложение Bubble Speed, чтобы запросить новое письмо для подтверждения."
+          },
+          "da": {
+            "successTitle": "Konto bekræftet",
+            "successBody": "Din email er blevet bekræftet. Åbn Bubble Speed-appen, og log ind med dit brugernavn og din adgangskode.",
+            "closeHint": "Du kan nu lukke dette vindue.",
+            "errorTitle": "Link udløbet",
+            "errorBody": "Dette bekræftelseslink er ugyldigt eller er udløbet. Åbn Bubble Speed-appen for at anmode om en ny bekræftelsesemail."
+          },
+          "fi": {
+            "successTitle": "Tili vahvistettu",
+            "successBody": "Sähköpostisi on vahvistettu. Avaa Bubble Speed -sovellus ja kirjaudu sisään käyttäjänimelläsi ja salasanallasi.",
+            "closeHint": "Voit nyt sulkea tämän ikkunan.",
+            "errorTitle": "Linkki vanhentunut",
+            "errorBody": "Tämä vahvistuslinkki on virheellinen tai vanhentunut. Avaa Bubble Speed -sovellus pyytääksesi uuden vahvistussähköpostin."
+          },
+          "no": {
+            "successTitle": "Konto bekreftet",
+            "successBody": "E-posten din er bekreftet. Åpne Bubble Speed-appen og logg inn med brukernavn og passord.",
+            "closeHint": "Du kan nå lukke dette vinduet.",
+            "errorTitle": "Lenken er utløpt",
+            "errorBody": "Denne bekreftelseslenken er ugyldig eller har utløpt. Åpne Bubble Speed-appen for å be om en ny bekreftelses-e-post."
+          },
+          "sv": {
+            "successTitle": "Kontot bekräftat",
+            "successBody": "Din e-post har verifierats. Öppna appen Bubble Speed och logga in med ditt användarnamn och lösenord.",
+            "closeHint": "Du kan nu stänga det här fönstret.",
+            "errorTitle": "Länken har gått ut",
+            "errorBody": "Den här bekräftelselänken är ogiltig eller har upphört att gälla. Öppna appen Bubble Speed för att begära ett nytt bekräftelsemejl."
+          },
+          "ta": {
+            "successTitle": "கணக்கு உறுதிசெய்யப்பட்டது",
+            "successBody": "உங்கள் மின்னஞ்சல் சரிபார்க்கப்பட்டது. Bubble Speed செயலியைத் திறந்து, உங்கள் பயனர்பெயர் மற்றும் கடவுச்சொல்லைப் பயன்படுத்தி உள்நுழையவும்.",
+            "closeHint": "இப்போது இந்த சாளரத்தை மூடலாம்.",
+            "errorTitle": "இணைப்பு காலாவதியானது",
+            "errorBody": "இந்த உறுதிப்படுத்தல் இணைப்பு தவறானது அல்லது காலாவதியாகிவிட்டது. புதிய உறுதிப்படுத்தல் மின்னஞ்சலைக் கோர Bubble Speed செயலியைத் திறக்கவும்."
+          },
+          "cs": {
+            "successTitle": "Účet potvrzen",
+            "successBody": "Tvůj e-mail byl ověřen. Otevři aplikaci Bubble Speed a přihlas se svým uživatelským jménem a heslem.",
+            "closeHint": "Toto okno můžeš nyní zavřít.",
+            "errorTitle": "Odkaz vypršel",
+            "errorBody": "Tento potvrzovací odkaz je neplatný nebo vypršel. Otevři aplikaci Bubble Speed a vyžádej si nový potvrzovací e-mail."
+          },
+          "hu": {
+            "successTitle": "Fiók megerősítve",
+            "successBody": "Megerősítettük az e-mail-címedet. Nyisd meg a Bubble Speed alkalmazást, és jelentkezz be a felhasználóneveddel és a jelszavaddal.",
+            "closeHint": "Ezt az ablakot most már bezárhatod.",
+            "errorTitle": "A hivatkozás lejárt",
+            "errorBody": "Ez a megerősítő hivatkozás érvénytelen vagy lejárt. Nyisd meg a Bubble Speed alkalmazást egy új megerősítő e-mail kéréséhez."
+          },
+          "sk": {
+            "successTitle": "Účet potvrdený",
+            "successBody": "Tvoj e-mail bol overený. Otvor aplikáciu Bubble Speed a prihlás sa svojím užívateľským menom a heslom.",
+            "closeHint": "Toto okno teraz môžeš zavrieť.",
+            "errorTitle": "Odkaz vypršal",
+            "errorBody": "Tento potvrdzovací odkaz je neplatný alebo vypršal. Otvor aplikáciu Bubble Speed a vyžiadaj si nový potvrdzovací e-mail."
+          },
+          "ja": {
+            "successTitle": "アカウント確認完了",
+            "successBody": "メールアドレスの確認が完了しました。Bubble Speed アプリを開き、ユーザー名とパスワードでログインしてください。",
+            "closeHint": "このウィンドウは閉じても大丈夫です。",
+            "errorTitle": "リンクの有効期限切れ",
+            "errorBody": "この確認リンクは無効か、有効期限が切れています。Bubble Speed アプリを開いて、新しい確認メールをリクエストしてください。"
+          },
+          "ro": {
+            "successTitle": "Cont confirmat",
+            "successBody": "Adresa ta de email a fost verificată. Deschide aplicația Bubble Speed și conectează-te cu numele de utilizator și parola ta.",
+            "closeHint": "Acum poți închide această fereastră.",
+            "errorTitle": "Link expirat",
+            "errorBody": "Acest link de confirmare este invalid sau a expirat. Deschide aplicația Bubble Speed pentru a solicita un nou email de confirmare."
+          },
+          "el": {
+            "successTitle": "Ο λογαριασμός επιβεβαιώθηκε",
+            "successBody": "Το email σου επιβεβαιώθηκε. Άνοιξε την εφαρμογή Bubble Speed και κάνε είσοδο με το όνομα χρήστη και τον κωδικό σου.",
+            "closeHint": "Μπορείς τώρα να κλείσεις αυτό το παράθυρο.",
+            "errorTitle": "Ο σύνδεσμος έληξε",
+            "errorBody": "Αυτός ο σύνδεσμος επιβεβαίωσης είναι άκυρος ή έχει λήξει. Άνοιξε την εφαρμογή Bubble Speed για να ζητήσεις νέο email επιβεβαίωσης."
+          },
+          "tr": {
+            "successTitle": "Hesap onaylandı",
+            "successBody": "E-postan doğrulandı. Bubble Speed uygulamasını aç ve kullanıcı adın ile şifrenle giriş yap.",
+            "closeHint": "Artık bu pencereyi kapatabilirsin.",
+            "errorTitle": "Bağlantının süresi doldu",
+            "errorBody": "Bu onay bağlantısı geçersiz veya süresi dolmuş. Yeni bir onay e-postası istemek için Bubble Speed uygulamasını aç."
+          },
+          "ms": {
+            "successTitle": "Akaun disahkan",
+            "successBody": "Emel anda telah disahkan. Buka aplikasi Bubble Speed dan log masuk dengan nama pengguna dan kata laluan anda.",
+            "closeHint": "Anda kini boleh menutup tetingkap ini.",
+            "errorTitle": "Pautan tamat tempoh",
+            "errorBody": "Pautan pengesahan ini tidak sah atau telah tamat tempoh. Buka aplikasi Bubble Speed untuk meminta emel pengesahan baharu."
+          },
+          "sw": {
+            "successTitle": "Akaunti imethibitishwa",
+            "successBody": "Barua pepe yako imethibitishwa. Fungua programu ya Bubble Speed na uingie kwa jina lako la mtumiaji na nenosiri lako.",
+            "closeHint": "Sasa unaweza kufunga dirisha hili.",
+            "errorTitle": "Muda wa kiungo umeisha",
+            "errorBody": "Kiungo hiki cha uthibitisho si sahihi au muda wake umeisha. Fungua programu ya Bubble Speed ili kuomba barua pepe mpya ya uthibitisho."
+          },
+          "tl": {
+            "successTitle": "Nakumpirma ang account",
+            "successBody": "Na-verify na ang iyong email. Buksan ang app ng Bubble Speed at mag-sign in gamit ang iyong pangalan at password.",
+            "closeHint": "Maaari mo nang isara ang bintanang ito.",
+            "errorTitle": "Nag-expire na ang link",
+            "errorBody": "Hindi wasto o nag-expire na ang link ng kumpirmasyon na ito. Buksan ang app ng Bubble Speed para humiling ng bagong email ng kumpirmasyon."
+          },
+          "ar": {
+            "successTitle": "تم تأكيد الحساب",
+            "successBody": "تم التحقق من بريدك الإلكتروني. افتح تطبيق Bubble Speed وسجّل الدخول باسم المستخدم وكلمة السر.",
+            "closeHint": "يمكنك الآن إغلاق هذه النافذة.",
+            "errorTitle": "انتهت صلاحية الرابط",
+            "errorBody": "رابط التأكيد هذا غير صالح أو انتهت صلاحيته. افتح تطبيق Bubble Speed لطلب رسالة تأكيد جديدة."
+          },
+          "ko": {
+            "successTitle": "계정 인증 완료",
+            "successBody": "이메일 인증이 완료되었습니다. Bubble Speed 앱을 열고 아이디와 비밀번호로 로그인하세요.",
+            "closeHint": "이제 이 창을 닫으셔도 됩니다.",
+            "errorTitle": "링크 만료",
+            "errorBody": "이 인증 링크가 유효하지 않거나 만료되었습니다. 새 인증 이메일을 요청하려면 Bubble Speed 앱을 여세요."
+          },
+          "zh": {
+            "successTitle": "账户已确认",
+            "successBody": "您的邮箱已验证。请打开 Bubble Speed 应用，使用您的用户名和密码登录。",
+            "closeHint": "您现在可以关闭此窗口。",
+            "errorTitle": "链接已过期",
+            "errorBody": "此确认链接无效或已过期。请打开 Bubble Speed 应用重新申请确认邮件。"
+          },
+          "id": {
+            "successTitle": "Akun dikonfirmasi",
+            "successBody": "Email Anda telah diverifikasi. Buka aplikasi Bubble Speed dan masuk dengan nama pengguna dan kata sandi Anda.",
+            "closeHint": "Anda sekarang dapat menutup jendela ini.",
+            "errorTitle": "Tautan kedaluwarsa",
+            "errorBody": "Tautan konfirmasi ini tidak valid atau telah kedaluwarsa. Buka aplikasi Bubble Speed untuk meminta email konfirmasi baru."
+          },
+          "th": {
+            "successTitle": "ยืนยันบัญชีแล้ว",
+            "successBody": "ยืนยันอีเมลของคุณเรียบร้อยแล้ว เปิดแอป Bubble Speed แล้วเข้าสู่ระบบด้วยชื่อผู้ใช้และรหัสผ่านของคุณ",
+            "closeHint": "คุณสามารถปิดหน้าต่างนี้ได้แล้ว",
+            "errorTitle": "ลิงก์หมดอายุ",
+            "errorBody": "ลิงก์ยืนยันนี้ไม่ถูกต้องหรือหมดอายุแล้ว เปิดแอป Bubble Speed เพื่อขออีเมลยืนยันฉบับใหม่"
+          },
+          "vi": {
+            "successTitle": "Đã xác nhận tài khoản",
+            "successBody": "Email của bạn đã được xác minh. Hãy mở ứng dụng Bubble Speed và đăng nhập bằng tên người dùng và mật khẩu của bạn.",
+            "closeHint": "Bây giờ bạn có thể đóng cửa sổ này.",
+            "errorTitle": "Liên kết đã hết hạn",
+            "errorBody": "Liên kết xác nhận này không hợp lệ hoặc đã hết hạn. Hãy mở ứng dụng Bubble Speed để yêu cầu một email xác nhận mới."
+          },
+          "he": {
+            "successTitle": "החשבון אושר",
+            "successBody": "האימייל שלך אומת. פתח את אפליקציית Bubble Speed והתחבר עם שם המשתמש והסיסמה שלך.",
+            "closeHint": "כעת ניתן לסגור חלון זה.",
+            "errorTitle": "הקישור פג תוקף",
+            "errorBody": "קישור האישור אינו תקין או שפג תוקפו. פתח את אפליקציית Bubble Speed כדי לבקש אימייל אישור חדש."
+          },
+          "fa": {
+            "successTitle": "حساب تأیید شد",
+            "successBody": "ایمیل شما تأیید شد. برنامه Bubble Speed را باز کنید و با نام کاربری و رمز عبور خود وارد شوید.",
+            "closeHint": "اکنون می‌توانید این پنجره را ببندید.",
+            "errorTitle": "پیوند منقضی شده",
+            "errorBody": "این پیوند تأیید نامعتبر یا منقضی شده است. برای درخواست ایمیل تأیید جدید، برنامه Bubble Speed را باز کنید."
+          },
+          "hi": {
+            "successTitle": "खाता सत्यापित हो गया",
+            "successBody": "आपका ईमेल सत्यापित हो गया है। Bubble Speed ऐप खोलें और अपने उपयोगकर्ता नाम और पासवर्ड से साइन इन करें।",
+            "closeHint": "अब आप यह विंडो बंद कर सकते हैं।",
+            "errorTitle": "लिंक समाप्त हो गया",
+            "errorBody": "यह पुष्टिकरण लिंक अमान्य है या समाप्त हो गया है। नया पुष्टिकरण ईमेल पाने के लिए Bubble Speed ऐप खोलें।"
+          },
+          "bn": {
+            "successTitle": "অ্যাকাউন্ট নিশ্চিত হয়েছে",
+            "successBody": "আপনার ইমেল যাচাই করা হয়েছে। Bubble Speed অ্যাপটি খুলুন এবং আপনার ব্যবহারকারীর নাম ও পাসওয়ার্ড দিয়ে সাইন ইন করুন।",
+            "closeHint": "আপনি এখন এই উইন্ডোটি বন্ধ করতে পারেন।",
+            "errorTitle": "লিঙ্কের মেয়াদ শেষ",
+            "errorBody": "এই নিশ্চিতকরণ লিঙ্কটি অবৈধ বা এর মেয়াদ শেষ হয়ে গেছে। একটি নতুন নিশ্চিতকরণ ইমেল পেতে Bubble Speed অ্যাপটি খুলুন।"
+          },
+          "mr": {
+            "successTitle": "खाते सत्यापित झाले",
+            "successBody": "तुमचा ईमेल सत्यापित झाला आहे. Bubble Speed अ‍ॅप उघडा आणि तुमचे वापरकर्तानाव व पासवर्ड वापरून साइन इन करा.",
+            "closeHint": "तुम्ही आता ही विंडो बंद करू शकता.",
+            "errorTitle": "लिंकची मुदत संपली",
+            "errorBody": "ही पुष्टी लिंक अवैध आहे किंवा तिची मुदत संपली आहे. नवीन पुष्टी ईमेल मिळवण्यासाठी Bubble Speed अ‍ॅप उघडा."
+          },
+          "bg": {
+            "successTitle": "Акаунтът е потвърден",
+            "successBody": "Имейлът ти е потвърден. Отвори приложението Bubble Speed и влез с потребителското си име и парола.",
+            "closeHint": "Вече можеш да затвориш този прозорец.",
+            "errorTitle": "Връзката е изтекла",
+            "errorBody": "Тази връзка за потвърждение е невалидна или е изтекла. Отвори приложението Bubble Speed, за да поискаш нов имейл за потвърждение."
+          },
+          "sr": {
+            "successTitle": "Nalog potvrđen",
+            "successBody": "Tvoj email je potvrđen. Otvori aplikaciju Bubble Speed i prijavi se svojim korisničkim imenom i lozinkom.",
+            "closeHint": "Sada možeš zatvoriti ovaj prozor.",
+            "errorTitle": "Link je istekao",
+            "errorBody": "Ovaj link za potvrdu je nevažeći ili je istekao. Otvori aplikaciju Bubble Speed da zatražiš novi email za potvrdu."
+          },
+          "uk": {
+            "successTitle": "Акаунт підтверджено",
+            "successBody": "Вашу електронну пошту підтверджено. Відкрийте застосунок Bubble Speed та увійдіть за допомогою свого користувача й пароля.",
+            "closeHint": "Тепер це вікно можна закрити.",
+            "errorTitle": "Термін дії посилання минув",
+            "errorBody": "Це посилання для підтвердження недійсне або його термін дії минув. Відкрийте застосунок Bubble Speed, щоб запросити новий лист для підтвердження."
+          },
+          "hr": {
+            "successTitle": "Račun potvrđen",
+            "successBody": "Tvoj email je potvrđen. Otvori aplikaciju Bubble Speed i prijavi se svojim korisničkim imenom i lozinkom.",
+            "closeHint": "Sada možeš zatvoriti ovaj prozor.",
+            "errorTitle": "Poveznica je istekla",
+            "errorBody": "Ova poveznica za potvrdu nije važeća ili je istekla. Otvori aplikaciju Bubble Speed da zatražiš novi email za potvrdu."
+          },
+          "pl": {
+            "successTitle": "Konto potwierdzone",
+            "successBody": "Twój adres e-mail został zweryfikowany. Otwórz aplikację Bubble Speed i zaloguj się, używając swojej nazwy użytkownika i hasła.",
+            "closeHint": "Możesz teraz zamknąć to okno.",
+            "errorTitle": "Link wygasł",
+            "errorBody": "Ten link potwierdzający jest nieprawidłowy lub wygasł. Otwórz aplikację Bubble Speed, aby poprosić o nowy e-mail potwierdzający."
+          }
+        };
+
+        const RTL = ["ar", "he", "fa"];
+
+        function detectLang() {
+            const q = new URLSearchParams(window.location.search);
+            const forced = (q.get("lang") || "").toLowerCase();
+            if (translations[forced]) return forced;
+            const raw = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+            let base = raw.split("-")[0];
+            if (!translations[base]) base = "en";
+            return base;
+        }
+
+        function isErrorState() {
+            // Supabase appends error / error_code / error_description on failed verification,
+            // in the query string and/or the URL hash fragment.
+            const q = new URLSearchParams(window.location.search);
+            const h = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+            return !!(q.get("error") || q.get("error_code") || q.get("error_description")
+                || h.get("error") || h.get("error_code") || h.get("error_description"));
+        }
+
+        (function render() {
+            const lang = detectLang();
+            const t = translations[lang] || translations.en;
+            const rtl = RTL.indexOf(lang) !== -1;
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = rtl ? "rtl" : "ltr";
+
+            const card = document.getElementById("card");
+            const titleEl = document.getElementById("title");
+            const bodyEl = document.getElementById("body");
+            const hintEl = document.getElementById("hint");
+
+            if (isErrorState()) {
+                card.classList.add("state-error");
+                // Morph the check into an "X" for the error state.
+                document.getElementById("tickPath").setAttribute("d", "M35 35 L65 65 M65 35 L35 65");
+                titleEl.textContent = t.errorTitle;
+                bodyEl.textContent = t.errorBody;
+                hintEl.style.display = "none";
+                document.title = t.errorTitle + " · Bubble Speed";
+            } else {
+                titleEl.textContent = t.successTitle;
+                bodyEl.textContent = t.successBody;
+                hintEl.textContent = t.closeHint;
+                document.title = t.successTitle + " · Bubble Speed";
+            }
+        })();
+    </script>
+</body>
+
+</html>

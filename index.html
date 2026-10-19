@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neowavecode — Apps</title>
+<meta name="description" content="neowavecode: todas mis aplicaciones móviles en un solo lugar. Seguridad, salud, productividad y diversión, en App Store y Google Play.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960'%3E%3Cpath fill='%230aa6c4' d='m353-480 59-59q12-12 12-28t-12-28q-12-12-28.5-12T355-595l-87 87q-6 6-8.5 13t-2.5 15q0 8 2.5 15t8.5 13l87 87q12 12 28.5 12t28.5-12q12-12 12-28t-12-28l-59-59Zm254 0-59 59q-12 12-12 28t12 28q12 12 28.5 12t28.5-12l87-87q6-6 8.5-13t2.5-15q0-8-2.5-15t-8.5-13l-87-87q-6-6-13.5-9t-15-3q-7.5 0-15 3t-13.5 9q-12 12-12 28t12 28l59 59ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>(function(){try{if(localStorage.getItem('nwc-theme')==='light')document.documentElement.removeAttribute('data-theme');}catch(e){}})();</script>
+</head>
+<body>
+
+<canvas class="bg-fx" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
+
+<header class="site"><div class="wrap nav">
+  <a class="brand notranslate" translate="no" href="index.html">
+    <svg class="wave" viewBox="0 -960 960 960" aria-hidden="true"><path fill="url(#wg)" d="m353-480 59-59q12-12 12-28t-12-28q-12-12-28.5-12T355-595l-87 87q-6 6-8.5 13t-2.5 15q0 8 2.5 15t8.5 13l87 87q12 12 28.5 12t28.5-12q12-12 12-28t-12-28l-59-59Zm254 0-59 59q-12 12-12 28t12 28q12 12 28.5 12t28.5-12l87-87q6-6 8.5-13t2.5-15q0-8-2.5-15t-8.5-13l-87-87q-6-6-13.5-9t-15-3q-7.5 0-15 3t-13.5 9q-12 12-12 28t12 28l59 59ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/><defs><linearGradient id="wg" x1="120" y1="-840" x2="840" y2="-120" gradientUnits="userSpaceOnUse"><stop stop-color="#0aa6c4"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs></svg>
+    <span class="grad">neowavecode</span>
+  </a>
+  <div class="langbox notranslate" translate="no">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg>
+    <select id="hubLang" onchange="translateTo(this.value)" aria-label="Idioma">
+      <option value="es">🇪🇸 Español</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="zh-CN">🇨🇳 中文</option>
+      <option value="hi">🇮🇳 हिन्दी</option>
+      <option value="ar">🇸🇦 العربية</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="bn">🇧🇩 বাংলা</option>
+      <option value="pt">🇵🇹 Português</option>
+      <option value="ru">🇷🇺 Русский</option>
+      <option value="ur">🇵🇰 اردو</option>
+      <option value="id">🇮🇩 Bahasa Indonesia</option>
+      <option value="de">🇩🇪 Deutsch</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="tr">🇹🇷 Türkçe</option>
+      <option value="vi">🇻🇳 Tiếng Việt</option>
+    </select>
+  </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a modo oscuro" title="Modo claro / oscuro">
+    <span class="tt"><span class="knob">
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </span></span>
+  </button>
+  <div id="google_translate_element"></div>
+</div></header>
+
+<main>
+  <section class="hero"><div class="wrap">
+    <span class="badge"><span class="dot"></span>Estudio independiente de apps</span>
+    <h1>Todas mis apps, <span class="grad">en un solo lugar</span></h1>
+    <p>Seguridad, salud, productividad y diversión. Pulsa cualquiera para ver su web y descargarla.</p>
+  </div></section>
+
+  <section class="apps"><div class="wrap">
+    <div class="grid">
+
+      <a class="app" style="--c:#00B24A" href="apps/sechome/">
+        <div class="app__top">
+          <img class="app__logo" src="assets/sechome.png" alt="SecHome" loading="lazy">
+          <div><p class="app__kicker">Videovigilancia</p><h3 class="app__name" translate="no">SecHome</h3></div>
+        </div>
+        <p class="app__desc">Videovigilancia privada sin cuotas: cámaras IP, IA en el dispositivo y cifrado de extremo a extremo.</p>
+        <div class="app__foot">
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.89,2C16,3.06 15.6,4.08 15,4.76C14.27,5.61 13.01,6.34 12,6.3C11.88,5.19 12.33,4.16 13,3.5Z"/></svg>iOS</span>
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M16.61,15.15C16.15,15.15 15.77,14.77 15.77,14.31C15.77,13.85 16.15,13.46 16.61,13.46C17.07,13.46 17.46,13.85 17.46,14.31A0.85,0.85 0 0,1 16.61,15.15M7.41,15.15C6.95,15.15 6.57,14.77 6.57,14.31C6.57,13.85 6.95,13.46 7.41,13.46C7.87,13.46 8.26,13.85 8.26,14.31C8.26,14.77 7.87,15.15 7.41,15.15M16.91,10.14L18.58,7.26C18.67,7.09 18.61,6.88 18.45,6.79C18.28,6.69 18.07,6.75 18,6.92L16.29,9.83C14.95,9.22 13.5,8.9 12,8.9C10.47,8.9 9.03,9.22 7.71,9.83L6,6.92C5.92,6.75 5.71,6.69 5.55,6.79C5.38,6.88 5.33,7.09 5.42,7.26L7.08,10.14C4.78,11.38 3.23,13.75 3,16.5H21C20.77,13.75 19.22,11.38 16.91,10.14Z"/></svg>Android</span>
+          <span class="app__go">Ver web <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="app" style="--c:#A855F7" href="apps/bubblespeed/">
+        <div class="app__top">
+          <img class="app__logo" src="assets/bubblespeed.png" alt="Bubble Speed" loading="lazy">
+          <div><p class="app__kicker">Juego arcade</p><h3 class="app__name" translate="no">Bubble Speed</h3></div>
+        </div>
+        <p class="app__desc">Arcade de reflejos con competición online mundial, ranking y salas privadas con amigos.</p>
+        <div class="app__foot">
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.89,2C16,3.06 15.6,4.08 15,4.76C14.27,5.61 13.01,6.34 12,6.3C11.88,5.19 12.33,4.16 13,3.5Z"/></svg>iOS</span>
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M16.61,15.15C16.15,15.15 15.77,14.77 15.77,14.31C15.77,13.85 16.15,13.46 16.61,13.46C17.07,13.46 17.46,13.85 17.46,14.31A0.85,0.85 0 0,1 16.61,15.15M7.41,15.15C6.95,15.15 6.57,14.77 6.57,14.31C6.57,13.85 6.95,13.46 7.41,13.46C7.87,13.46 8.26,13.85 8.26,14.31C8.26,14.77 7.87,15.15 7.41,15.15M16.91,10.14L18.58,7.26C18.67,7.09 18.61,6.88 18.45,6.79C18.28,6.69 18.07,6.75 18,6.92L16.29,9.83C14.95,9.22 13.5,8.9 12,8.9C10.47,8.9 9.03,9.22 7.71,9.83L6,6.92C5.92,6.75 5.71,6.69 5.55,6.79C5.38,6.88 5.33,7.09 5.42,7.26L7.08,10.14C4.78,11.38 3.23,13.75 3,16.5H21C20.77,13.75 19.22,11.38 16.91,10.14Z"/></svg>Android</span>
+          <span class="app__go">Ver web <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="app" style="--c:#17CDD8" href="apps/vrmirror/">
+        <div class="app__top">
+          <img class="app__logo" src="assets/vrmirror.png" alt="VR Mirror" loading="lazy">
+          <div><p class="app__kicker">Salud · Rehabilitación</p><h3 class="app__name" translate="no">VR Mirror<span class="rtm">®</span></h3></div>
+        </div>
+        <p class="app__desc">Terapia de espejo en RV para la rehabilitación visual, con seguimiento clínico para profesionales.</p>
+        <div class="app__foot">
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.89,2C16,3.06 15.6,4.08 15,4.76C14.27,5.61 13.01,6.34 12,6.3C11.88,5.19 12.33,4.16 13,3.5Z"/></svg>iOS</span>
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M16.61,15.15C16.15,15.15 15.77,14.77 15.77,14.31C15.77,13.85 16.15,13.46 16.61,13.46C17.07,13.46 17.46,13.85 17.46,14.31A0.85,0.85 0 0,1 16.61,15.15M7.41,15.15C6.95,15.15 6.57,14.77 6.57,14.31C6.57,13.85 6.95,13.46 7.41,13.46C7.87,13.46 8.26,13.85 8.26,14.31C8.26,14.77 7.87,15.15 7.41,15.15M16.91,10.14L18.58,7.26C18.67,7.09 18.61,6.88 18.45,6.79C18.28,6.69 18.07,6.75 18,6.92L16.29,9.83C14.95,9.22 13.5,8.9 12,8.9C10.47,8.9 9.03,9.22 7.71,9.83L6,6.92C5.92,6.75 5.71,6.69 5.55,6.79C5.38,6.88 5.33,7.09 5.42,7.26L7.08,10.14C4.78,11.38 3.23,13.75 3,16.5H21C20.77,13.75 19.22,11.38 16.91,10.14Z"/></svg>Android</span>
+          <span class="app__go">Ver web <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="app" style="--c:#3B82F6" href="apps/rosterflow/">
+        <div class="app__top">
+          <img class="app__logo" src="assets/rosterflow.png" alt="RosterFlow" loading="lazy">
+          <div><p class="app__kicker">Gestión empresarial</p><h3 class="app__name" translate="no">RosterFlow</h3></div>
+        </div>
+        <p class="app__desc">Horarios, fichaje GPS, equipos, finanzas y facturación en PDF para PYMES y autónomos.</p>
+        <div class="app__foot">
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.89,2C16,3.06 15.6,4.08 15,4.76C14.27,5.61 13.01,6.34 12,6.3C11.88,5.19 12.33,4.16 13,3.5Z"/></svg>iOS</span>
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M16.61,15.15C16.15,15.15 15.77,14.77 15.77,14.31C15.77,13.85 16.15,13.46 16.61,13.46C17.07,13.46 17.46,13.85 17.46,14.31A0.85,0.85 0 0,1 16.61,15.15M7.41,15.15C6.95,15.15 6.57,14.77 6.57,14.31C6.57,13.85 6.95,13.46 7.41,13.46C7.87,13.46 8.26,13.85 8.26,14.31C8.26,14.77 7.87,15.15 7.41,15.15M16.91,10.14L18.58,7.26C18.67,7.09 18.61,6.88 18.45,6.79C18.28,6.69 18.07,6.75 18,6.92L16.29,9.83C14.95,9.22 13.5,8.9 12,8.9C10.47,8.9 9.03,9.22 7.71,9.83L6,6.92C5.92,6.75 5.71,6.69 5.55,6.79C5.38,6.88 5.33,7.09 5.42,7.26L7.08,10.14C4.78,11.38 3.23,13.75 3,16.5H21C20.77,13.75 19.22,11.38 16.91,10.14Z"/></svg>Android</span>
+          <span class="app__go">Ver web <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="app" style="--c:#FF3B30" href="apps/alertsos/">
+        <div class="app__top">
+          <img class="app__logo" src="assets/alertsos.jpg" alt="AlertSOS" loading="lazy">
+          <div><p class="app__kicker">Seguridad personal</p><h3 class="app__name" translate="no">AlertSOS</h3></div>
+        </div>
+        <p class="app__desc">Botón de pánico: sirena SOS, llamada de emergencia y tu ubicación por WhatsApp, incluso sin conexión.</p>
+        <div class="app__foot">
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.89,2C16,3.06 15.6,4.08 15,4.76C14.27,5.61 13.01,6.34 12,6.3C11.88,5.19 12.33,4.16 13,3.5Z"/></svg>iOS</span>
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M16.61,15.15C16.15,15.15 15.77,14.77 15.77,14.31C15.77,13.85 16.15,13.46 16.61,13.46C17.07,13.46 17.46,13.85 17.46,14.31A0.85,0.85 0 0,1 16.61,15.15M7.41,15.15C6.95,15.15 6.57,14.77 6.57,14.31C6.57,13.85 6.95,13.46 7.41,13.46C7.87,13.46 8.26,13.85 8.26,14.31C8.26,14.77 7.87,15.15 7.41,15.15M16.91,10.14L18.58,7.26C18.67,7.09 18.61,6.88 18.45,6.79C18.28,6.69 18.07,6.75 18,6.92L16.29,9.83C14.95,9.22 13.5,8.9 12,8.9C10.47,8.9 9.03,9.22 7.71,9.83L6,6.92C5.92,6.75 5.71,6.69 5.55,6.79C5.38,6.88 5.33,7.09 5.42,7.26L7.08,10.14C4.78,11.38 3.23,13.75 3,16.5H21C20.77,13.75 19.22,11.38 16.91,10.14Z"/></svg>Android</span>
+          <span class="app__go">Ver web <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="app" style="--c:#FF5F8A" href="apps/yourwave/">
+        <div class="app__top">
+          <img class="app__logo" src="assets/yourwave.png" alt="YourWave" loading="lazy">
+          <div><p class="app__kicker">Conocer gente</p><h3 class="app__name" translate="no">YourWave</h3></div>
+        </div>
+        <p class="app__desc">Conoce gente a tu alrededor y conecta por personalidad, no solo por apariencia.</p>
+        <div class="app__foot">
+          <span class="tag" translate="no"><svg viewBox="0 0 24 24"><path d="M16.61,15.15C16.15,15.15 15.77,14.77 15.77,14.31C15.77,13.85 16.15,13.46 16.61,13.46C17.07,13.46 17.46,13.85 17.46,14.31A0.85,0.85 0 0,1 16.61,15.15M7.41,15.15C6.95,15.15 6.57,14.77 6.57,14.31C6.57,13.85 6.95,13.46 7.41,13.46C7.87,13.46 8.26,13.85 8.26,14.31C8.26,14.77 7.87,15.15 7.41,15.15M16.91,10.14L18.58,7.26C18.67,7.09 18.61,6.88 18.45,6.79C18.28,6.69 18.07,6.75 18,6.92L16.29,9.83C14.95,9.22 13.5,8.9 12,8.9C10.47,8.9 9.03,9.22 7.71,9.83L6,6.92C5.92,6.75 5.71,6.69 5.55,6.79C5.38,6.88 5.33,7.09 5.42,7.26L7.08,10.14C4.78,11.38 3.23,13.75 3,16.5H21C20.77,13.75 19.22,11.38 16.91,10.14Z"/></svg>Android</span>
+          <span class="app__go">Ver web <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+  </div></section>
+</main>
+
+<footer class="site"><div class="wrap foot">
+  <span class="brand notranslate" translate="no"><svg class="wave" viewBox="0 -960 960 960" aria-hidden="true"><path fill="url(#wg2)" d="m353-480 59-59q12-12 12-28t-12-28q-12-12-28.5-12T355-595l-87 87q-6 6-8.5 13t-2.5 15q0 8 2.5 15t8.5 13l87 87q12 12 28.5 12t28.5-12q12-12 12-28t-12-28l-59-59Zm254 0-59 59q-12 12-12 28t12 28q12 12 28.5 12t28.5-12l87-87q6-6 8.5-13t2.5-15q0-8-2.5-15t-8.5-13l-87-87q-6-6-13.5-9t-15-3q-7.5 0-15 3t-13.5 9q-12 12-12 28t12 28l59 59ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/><defs><linearGradient id="wg2" x1="120" y1="-840" x2="840" y2="-120" gradientUnits="userSpaceOnUse"><stop stop-color="#0aa6c4"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs></svg> <span class="grad">neowavecode</span></span>
+  <span>© <span data-year>2026</span> neowavecode · Todos los derechos reservados.</span>
+</div></footer>
+
+<script>document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
+
+<!-- Traducción automática con Google Translate (15 idiomas), guiada desde el selector de arriba -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'es',
+      includedLanguages: 'es,en,zh-CN,hi,ar,fr,bn,pt,ru,ur,id,de,ja,tr,vi',
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+  function translateTo(code) {
+    if (code === 'es') {
+      var e = 'expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie = 'googtrans=; ' + e;
+      document.cookie = 'googtrans=; ' + e + ' domain=.' + location.hostname + ';';
+      location.reload();
+      return;
+    }
+    var combo = document.querySelector('.goog-te-combo');
+    if (!combo) return;
+    combo.value = code;
+    combo.dispatchEvent(new Event('change'));
+  }
+  window.addEventListener('load', function () {
+    var m = document.cookie.match(/googtrans=\/[^/]*\/([^;]+)/);
+    if (!m) return;
+    var s = document.getElementById('hubLang');
+    if (s && [].some.call(s.options, function (o) { return o.value === m[1]; })) s.value = m[1];
+  });
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Fondo de partículas conectadas (sutil y lento) -->
+<script>
+(function(){
+  var cv=document.querySelector('.bg-fx'); if(!cv) return;
+  var ctx=cv.getContext('2d'), W, H, pts;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var O={base:26, speed:0.07, maxDist:160, lineA:0.14, dotR:2.2, dotA:0.45, rgb:'34,211,238'};
+  function init(){
+    W=cv.width=innerWidth; H=cv.height=innerHeight;
+    var n=Math.max(14, Math.round(O.base*(W*H)/(1366*768)));
+    pts=[]; for(var i=0;i<n;i++) pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*O.speed*2,vy:(Math.random()-.5)*O.speed*2});
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    var i,j;
+    for(i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}
+    for(i=0;i<pts.length;i++)for(j=i+1;j<pts.length;j++){
+      var a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<O.maxDist){ctx.strokeStyle='rgba('+O.rgb+','+((1-d/O.maxDist)*O.lineA).toFixed(3)+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+    }
+    ctx.globalAlpha=O.dotA; ctx.fillStyle='rgb('+O.rgb+')';
+    for(i=0;i<pts.length;i++){ctx.beginPath();ctx.arc(pts[i].x,pts[i].y,O.dotR,0,6.283);ctx.fill();}
+    ctx.globalAlpha=1;
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  init(); frame();
+  var t; addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){init();if(reduce)frame();},200);});
+})();
+</script>
+
+<!-- Interruptor tema claro / oscuro -->
+<script>
+(function(){
+  var root=document.documentElement, b=document.getElementById('themeToggle');
+  function lbl(){ if(b) b.setAttribute('aria-label', root.getAttribute('data-theme')==='dark'?'Cambiar a modo claro':'Cambiar a modo oscuro'); }
+  lbl();
+  if(b) b.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    if(dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
+    try{ localStorage.setItem('nwc-theme', dark?'light':'dark'); }catch(e){}
+    lbl();
+  });
+})();
+</script>
+</body>
+</html>

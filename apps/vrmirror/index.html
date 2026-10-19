@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VR Mirror — Terapia de espejo en realidad virtual</title>
+<meta name="description" content="VR Mirror convierte tu móvil en una herramienta de terapia de espejo en RV para rehabilitación visual y neurológica. Gratis, privada y con seguimiento clínico para profesionales.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site"><div class="wrap nav">
+  <a class="logo" href="index.html">
+    <img src="logo.png" alt="VR Mirror">
+    <b>VR Mirror<span class="tm">®</span></b>
+  </a>
+  <nav class="links">
+    <a href="#features" data-i18n="navFeatures">Funciones</a>
+    <a href="#how" data-i18n="navHow">Cómo funciona</a>
+    <a href="historia.html" data-i18n="navHistory">Historia</a>
+  </nav>
+  <div class="langbox">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg>
+    <select id="lang-selector" aria-label="Idioma">
+      <option value="es">🇪🇸 Español</option>
+      <option value="en">🇺🇸 English</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="de">🇩🇪 Deutsch</option>
+      <option value="it">🇮🇹 Italiano</option>
+      <option value="pt">🇵🇹 Português</option>
+      <option value="zh">🇨🇳 中文</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="ko">🇰🇷 한국어</option>
+      <option value="ru">🇷🇺 Русский</option>
+      <option value="ar">🇸🇦 العربية</option>
+      <option value="hi">🇮🇳 हिन्दी</option>
+      <option value="nl">🇳🇱 Nederlands</option>
+      <option value="sv">🇸🇪 Svenska</option>
+      <option value="da">🇩🇰 Dansk</option>
+      <option value="fi">🇫🇮 Suomi</option>
+      <option value="no">🇳🇴 Norsk</option>
+      <option value="tr">🇹🇷 Türkçe</option>
+      <option value="pl">🇵🇱 Polski</option>
+      <option value="vi">🇻🇳 Tiếng Việt</option>
+    </select>
+  </div>
+</div></header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero"><div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="badge"><span class="dot"></span><span data-i18n="heroBadge">Terapia de espejo en RV · Gratis y privada</span></span>
+        <h1 data-i18n="heroTitle">Experiencia inmersiva para todos</h1>
+        <p class="sub" data-i18n="heroDesc">La herramienta definitiva de Espejo VR para una experiencia visual única y envolvente.</p>
+        <div class="cta-row">
+          <a class="badge-link" href="https://apps.apple.com/us/app/vr-mirror-visual-training/id6756859575" target="_blank" rel="noopener" aria-label="Descargar en App Store"><img src="assets/appstore.svg" alt="Descargar en el App Store"></a>
+          <a class="badge-link" href="https://play.google.com/store/apps/details?id=com.neowavercode.therapyvrmirror" target="_blank" rel="noopener" aria-label="Disponible en Google Play"><img src="assets/googleplay.png" alt="Disponible en Google Play"></a>
+          <a class="btn-ghost" href="historia.html"><span data-i18n="historiaBtn">📖 Nuestra historia</span></a>
+        </div>
+        <p class="note" data-i18n="heroNote">Gratis · Sin registro · Funciona sin conexión</p>
+      </div>
+
+      <!-- Mockup con slider de capturas -->
+      <div class="hero-media">
+        <div class="mock">
+          <div class="glow"></div>
+          <div class="phone"><div class="screen">
+            <div class="slider">
+              <img src="assets/screen-1.webp" alt="VR Mirror — pantalla de inicio" loading="eager">
+              <img src="assets/screen-2.webp" alt="VR Mirror — panel profesional">
+              <img src="assets/screen-3.webp" alt="VR Mirror — radares de evolución">
+              <img src="assets/screen-4.webp" alt="VR Mirror — ficha de paciente">
+              <img src="assets/screen-5.webp" alt="VR Mirror — informe PDF">
+              <img src="assets/screen-1.webp" alt="" aria-hidden="true">
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust">
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg><span data-i18n="trust1">Sin registro</span></span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span data-i18n="trust2">Todo en tu dispositivo</span></span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg><span data-i18n="trust3">Gratis</span></span>
+    </div>
+  </div></section>
+
+  <!-- FEATURES -->
+  <section id="features"><div class="wrap">
+    <div class="section-h">
+      <div class="kicker" data-i18n="featKicker">Funciones</div>
+      <h2 data-i18n="featTitle">Pensada para la rehabilitación visual</h2>
+      <p data-i18n="featSub">Potente para profesionales, sencilla para cualquiera.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div><h3 data-i18n="feat1Title">Simetría Visual</h3><p data-i18n="feat1Desc">Experimenta una nueva perspectiva visualizando tus movimientos en tiempo real.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3 data-i18n="feat4Title">Para rehabilitación</h3><p data-i18n="feat4Desc">Diseñada como apoyo en la terapia de espejo tras un ictus o una amputación.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 3-3 3 2 4-5"/></svg></div><h3 data-i18n="feat5Title">Seguimiento clínico</h3><p data-i18n="feat5Desc">Módulo para profesionales: usuarios, sesiones, radares de evolución e informes en PDF.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></div><h3 data-i18n="feat2Title">Instantáneo</h3><p data-i18n="feat2Desc">Sin registros ni calibraciones complejas. Abrir y usar.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3 data-i18n="feat3Title">Privado</h3><p data-i18n="feat3Desc">Todo el procesamiento se realiza en tu dispositivo. Nada se sube a la nube.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg></div><h3 data-i18n="feat6Title">Más de 40 idiomas</h3><p data-i18n="feat6Desc">Disponible en 43 idiomas para pacientes y profesionales de todo el mundo.</p></div>
+    </div>
+  </div></section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" style="background:linear-gradient(180deg,transparent,rgba(23,205,216,.05),transparent)"><div class="wrap">
+    <div class="section-h">
+      <div class="kicker" data-i18n="howKicker">Cómo funciona</div>
+      <h2 data-i18n="howTitle">Lista en menos de un minuto</h2>
+      <p data-i18n="howSub">Sin cuentas, sin configuraciones complicadas, sin cuotas.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3 data-i18n="step1Title">Descarga VR Mirror</h3><p data-i18n="step1Desc">Consíguela gratis en el App Store o en Google Play.</p></div>
+      <div class="step"><div class="num">2</div><h3 data-i18n="step2Title">Coloca el móvil en el visor</h3><p data-i18n="step2Desc">Pon el teléfono en un visor cardboard y pulsa Comenzar.</p></div>
+      <div class="step"><div class="num">3</div><h3 data-i18n="step3Title">Entrena y mide tu progreso</h3><p data-i18n="step3Desc">Realiza tus sesiones de terapia de espejo y sigue tu evolución.</p></div>
+    </div>
+  </div></section>
+
+  <!-- PRIVACY / HEALTH TEASER -->
+  <section><div class="wrap">
+    <div class="privacy-teaser">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <h2 data-i18n="ptTitle">Tus datos clínicos, siempre en tu dispositivo</h2>
+      <p data-i18n="ptBody">VR Mirror procesa todo localmente. Los datos de pacientes y sesiones se guardan solo en tu teléfono — nada se sube a la nube.</p>
+      <a class="btn" href="privacy.html"><span data-i18n="ptCta">Leer la Política de Privacidad</span></a>
+    </div>
+  </div></section>
+
+  <!-- SUPPORT + DONATE -->
+  <section style="padding-top:8px"><div class="wrap">
+    <div class="helpcards">
+      <div class="helpcard">
+        <h2 data-i18n="supportTitle">¿Necesitas Ayuda?</h2>
+        <p data-i18n="supportDesc">Estamos aquí para escucharte. Si tienes problemas técnicos o sugerencias, contáctanos.</p>
+        <a class="act ghost" href="mailto:infovrmirrorapp@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="btnSupport">Contactar Soporte</span></a>
+      </div>
+      <div class="helpcard donate">
+        <div class="ic-coffee">☕</div>
+        <h2 data-i18n="donateTitle">Apoyar el proyecto</h2>
+        <p data-i18n="donateDesc">Tu donación nos ayuda a mantener y mejorar VR Mirror de forma gratuita.</p>
+        <a class="act warm" href="https://www.paypal.me/josestorm88" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35 10.55 20C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"/></svg><span data-i18n="btnDonate">Donar con PayPal</span></a>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="site"><div class="wrap">
+  <div class="foot">
+    <div>
+      <div class="brand"><img src="logo.png" alt="VR Mirror"><span>VR Mirror<span class="tm">®</span></span></div>
+      <p style="color:var(--muted);max-width:34ch;margin:12px 0 0" data-i18n="footerTagline">Terapia de espejo en RV para la rehabilitación visual.</p>
+      <p class="foot-follow" data-i18n="followUs">Síguenos</p>
+      <div class="foot-social">
+        <a class="yt" href="https://www.youtube.com/@VRMirror-app" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.58,7.19C21.35,6.33 20.67,5.65 19.81,5.42C18.25,5 12,5 12,5C12,5 5.75,5 4.19,5.42C3.33,5.65 2.65,6.33 2.42,7.19C2,8.75 2,12 2,12C2,12 2,15.25 2.42,16.81C2.65,17.67 3.33,18.35 4.19,18.58C5.75,19 12,19 12,19C12,19 18.25,19 19.81,18.58C20.67,18.35 21.35,17.67 21.58,16.81C22,15.25 22,12 22,12C22,12 22,8.75 21.58,7.19M10,15V9L15.2,12L10,15Z"/></svg><span>YouTube</span></a>
+        <a class="ig" href="https://www.instagram.com/vr_mirror_app/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2C22,19.4 19.4,22 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8C2,4.6 4.6,2 7.8,2M7.6,4C5.6,4 4,5.6 4,7.6V16.4C4,18.4 5.6,20 7.6,20H16.4C18.4,20 20,18.4 20,16.4V7.6C20,5.6 18.4,4 16.4,4H7.6M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M17.2,5.5A1.3,1.3 0 0,1 18.5,6.8A1.3,1.3 0 0,1 17.2,8.1A1.3,1.3 0 0,1 15.9,6.8A1.3,1.3 0 0,1 17.2,5.5Z"/></svg><span>Instagram</span></a>
+        <a class="rd" href="https://www.reddit.com/r/StrokeVRTraining/" target="_blank" rel="noopener" aria-label="Reddit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 15.41C14.58 15.5 14.58 15.69 14.5 15.8C13.77 16.5 12.41 16.56 12 16.56C11.61 16.56 10.25 16.5 9.54 15.8C9.44 15.69 9.44 15.5 9.54 15.41C9.65 15.31 9.82 15.31 9.92 15.41C10.37 15.85 11.31 16 12 16C12.71 16 13.66 15.85 14.1 15.41C14.21 15.31 14.38 15.31 14.5 15.41M10.75 13.04C10.75 12.47 10.28 12 9.71 12C9.14 12 8.67 12.47 8.67 13.04C8.67 13.61 9.14 14.09 9.71 14.09C10.28 14.09 10.75 13.61 10.75 13.04M15.33 12C14.76 12 14.29 12.47 14.29 13.04C14.29 13.61 14.76 14.09 15.33 14.09C15.9 14.09 16.37 13.61 16.37 13.04C16.37 12.47 15.9 12 15.33 12M22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2C17.5 2 22 6.5 22 12M18.67 12C18.67 11.19 18 10.54 17.22 10.54C16.82 10.54 16.46 10.7 16.2 10.95C15.2 10.23 13.83 9.77 12.3 9.71L12.97 6.58L15.14 7.05C15.16 7.6 15.62 8.04 16.18 8.04C16.75 8.04 17.22 7.57 17.22 7C17.22 6.43 16.75 5.96 16.18 5.96C15.78 5.96 15.43 6.19 15.26 6.5L12.84 6C12.77 5.98 12.7 6 12.65 6.03C12.59 6.07 12.56 6.13 12.54 6.2L11.79 9.71C10.24 9.76 8.84 10.22 7.82 10.95C7.56 10.7 7.19 10.54 6.78 10.54C5.97 10.54 5.33 11.19 5.33 12C5.33 12.6 5.68 13.11 6.19 13.35C6.17 13.5 6.16 13.65 6.16 13.8C6.16 16.05 8.78 17.87 12 17.87C15.23 17.87 17.85 16.05 17.85 13.8C17.85 13.65 17.84 13.5 17.82 13.36C18.32 13.11 18.67 12.6 18.67 12Z"/></svg><span>Reddit</span></a>
+      </div>
+    </div>
+    <div class="links">
+      <a href="privacy.html" data-i18n="linkPrivacy">Política de Privacidad</a>
+      <a href="terms.html" data-i18n="linkTerms">Términos de Uso</a>
+      <a href="support.html" data-i18n="linkSupport">Soporte</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© <span data-year>2026</span> VR Mirror · <span data-i18n="footerRightsShort">Todos los derechos reservados.</span></span>
+  </div>
+</div></footer>
+
+<script src="script.js"></script>
+</body>
+</html>

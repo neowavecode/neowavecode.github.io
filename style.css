@@ -1,0 +1,118 @@
+/* neowavecode — hub del creador. Tema CLARO. */
+:root{
+  --bg:#f2f7fb;
+  --panel:#ffffff;
+  --panel-2:#f7fbfe;
+  --line:rgba(15,32,51,.10);
+  --line-strong:rgba(15,32,51,.18);
+  --text:#0f1f33;
+  --muted:#5a7087;
+  --a1:#0aa6c4;   /* cian */
+  --a2:#6366f1;   /* índigo */
+  --radius:18px;
+  --maxw:1120px;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;min-height:100%;
+  background:
+    radial-gradient(900px 480px at 15% -10%,rgba(10,166,196,.12),transparent 60%),
+    radial-gradient(900px 480px at 95% 0%,rgba(99,102,241,.12),transparent 60%),
+    var(--bg);
+  background-attachment:fixed}
+body{
+  margin:0;color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;
+  background:transparent;min-height:100vh;
+}
+/* Fondo de partículas conectadas (sutil, fijo) */
+.bg-fx{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.grad{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Header */
+header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+  background:rgba(255,255,255,.78);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:14px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;font-size:19px}
+.brand .wave{width:26px;height:26px;filter:drop-shadow(0 3px 10px rgba(10,166,196,.4))}
+.langbox{margin-left:auto;display:flex;align-items:center;gap:7px}
+.langbox svg{width:17px;height:17px;color:var(--muted)}
+select#hubLang{background:#fff;color:var(--text);border:1px solid var(--line-strong);border-radius:10px;
+  padding:7px 11px;font-size:13px;font-family:inherit;cursor:pointer;max-width:170px}
+/* Google Translate: widget oculto, lo guiamos desde nuestro selector */
+#google_translate_element{display:none !important}
+.goog-te-banner-frame,.skiptranslate>iframe{display:none !important}
+body{top:0 !important;position:static !important}
+
+/* Hero */
+.hero{text-align:center;padding:72px 0 36px}
+.hero .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;
+  border:1px solid var(--line-strong);background:rgba(99,102,241,.08);color:#4f46e5;font-size:13px;font-weight:700}
+.hero .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--a1);box-shadow:0 0 12px var(--a1)}
+.hero h1{font-size:clamp(34px,6.5vw,62px);line-height:1.04;letter-spacing:-1.5px;font-weight:900;margin:20px auto 12px;max-width:17ch;color:#0b1a2b}
+.hero p{color:var(--muted);font-size:clamp(16px,2.2vw,20px);max-width:58ch;margin:0 auto}
+
+/* Apps grid */
+.apps{padding:16px 0 70px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
+.app{position:relative;display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border:1px solid var(--line);border-radius:var(--radius);padding:22px;overflow:hidden;
+  box-shadow:0 1px 2px rgba(15,32,51,.04);
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;--c:#0aa6c4}
+.app::before{content:"";position:absolute;inset:0;background:radial-gradient(440px 170px at 20% -12%,color-mix(in srgb,var(--c) 16%,transparent),transparent 72%);
+  opacity:0;transition:opacity .22s ease;pointer-events:none}
+.app:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--c) 60%,var(--line-strong));
+  box-shadow:0 22px 44px -22px color-mix(in srgb,var(--c) 55%,transparent)}
+.app:hover::before{opacity:1}
+.app__top{display:flex;align-items:center;gap:14px}
+.app__logo{width:62px;height:62px;border-radius:15px;object-fit:cover;border:1px solid var(--line-strong);
+  box-shadow:0 8px 20px -10px rgba(15,32,51,.35);flex-shrink:0}
+.app__name{font-size:20px;font-weight:800;letter-spacing:-.3px;margin:0;color:#0b1a2b}
+.app__name .rtm{font-size:.5em;vertical-align:super;font-weight:700;opacity:.75;margin-left:1px}
+.app__kicker{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--c);margin:0 0 3px}
+.app__desc{color:var(--muted);font-size:14.5px;margin:0;flex:1}
+.app__foot{display:flex;align-items:center;gap:8px;margin-top:2px}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#334155;
+  background:rgba(15,32,51,.05);border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+.tag svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+.app__go{margin-left:auto;display:inline-flex;align-items:center;gap:6px;color:var(--c);font-weight:800;font-size:13px}
+.app__go svg{width:16px;height:16px;transition:transform .2s ease}
+.app:hover .app__go svg{transform:translateX(4px)}
+
+/* Footer */
+footer.site{border-top:1px solid var(--line);background:#ffffff;padding:34px 0;margin-top:10px}
+.foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:13px}
+.foot .brand{font-size:16px}
+
+@media (max-width:560px){
+  .hero{padding:52px 0 26px}
+}
+
+/* Interruptor de tema (sol / luna) */
+.theme-toggle{margin-left:10px;background:none;border:none;padding:0;cursor:pointer;display:inline-flex;align-items:center}
+.tt{position:relative;width:54px;height:28px;border-radius:999px;background:var(--line-strong);display:block;transition:background .22s}
+.tt .knob{position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;
+  display:grid;place-items:center;transition:left .22s ease,background .22s;box-shadow:0 2px 6px rgba(0,0,0,.28)}
+.tt .knob svg{width:14px;height:14px}
+.tt .i-sun{color:#f59e0b}
+.tt .i-moon{color:#cbd5e1;display:none}
+:root[data-theme="dark"] .tt .knob{left:30px;background:#1e293b}
+:root[data-theme="dark"] .tt .i-sun{display:none}
+:root[data-theme="dark"] .tt .i-moon{display:block}
+
+/* ===== MODO OSCURO ===== */
+:root[data-theme="dark"]{
+  --bg:#0A0E17; --panel:#121A2B; --panel-2:#0E1524;
+  --line:rgba(255,255,255,.08); --line-strong:rgba(255,255,255,.16);
+  --text:#EAF0FA; --muted:#93A1B5; --a1:#22D3EE; --a2:#818CF8;
+}
+:root[data-theme="dark"] header.site{background:rgba(10,14,23,.72)}
+:root[data-theme="dark"] .hero h1{color:#f1f6ff}
+:root[data-theme="dark"] .app__name{color:#f1f6ff}
+:root[data-theme="dark"] .badge{background:rgba(129,140,248,.14);border-color:rgba(129,140,248,.30);color:#c7d2fe}
+:root[data-theme="dark"] .tag{color:#cbd5e1;background:rgba(255,255,255,.06);border-color:var(--line)}
+:root[data-theme="dark"] select#hubLang{background:var(--panel);color:var(--text);border-color:var(--line-strong)}
+:root[data-theme="dark"] footer.site{background:var(--panel-2)}
+:root[data-theme="dark"] .app{box-shadow:none}
